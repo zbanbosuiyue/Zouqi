@@ -1,0 +1,6 @@
+framework module Pods_Zouqiba {
+  umbrella header "Pods-Zouqiba-umbrella.h"
+
+  export *
+  module * { export * }
+}
