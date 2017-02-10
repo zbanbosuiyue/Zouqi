@@ -4,7 +4,7 @@
 target 'Zouqiba' do
   # Comment this line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-  pod 'Alamofire'
+  pod 'Alamofire', '~> 4.0'
   pod 'Fabric'
   pod 'Digits'
   pod 'Crashlytics'
@@ -15,6 +15,7 @@ target 'Zouqiba' do
   pod 'Kanna'
   pod 'CHRTextFieldFormatter'
   pod 'ImagePicker'
+  pod 'JGProgressHUD'
 
 # Pods for Zouqiba
 

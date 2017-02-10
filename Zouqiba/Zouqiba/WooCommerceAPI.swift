@@ -9,84 +9,66 @@
 import Foundation
 import Alamofire
 import Kanna
+import JGProgressHUD
 
 
 private let WCConsumerKey = "ck_d9416856e0192556cfb0810cb27df38647adad5b"
 private let WCSecretKey = "cs_3e86cad7fd7260dd449ccd1e706e7f64a72bc15d"
 
-/* miibox
-private let WCConsumerKey = "ck_e425e5aba20cbc1ac628784e9d47c18ba7b1fcf4"
-private let WCSecretKey = "ck_e425e5aba20cbc1ac628784e9d47c18ba7b1fcf4"
-*/
 
 extension UIViewController{
 
-    
-    public func getWooCommerceAPI(){
-        Alamofire.request(.GET, "http://oneparty.dev.quadshot.com/wc-api/v3/products?", parameters: ["consumer_key":"ck_bf05ed05c63267d61f0875c88d7dce8cc9f32ddc", "consumer_secret":"cs_6e9ad19edad93dd2da2748e72eb8ecaa7abb097e"]).responseJSON { response in
-            debugPrint(response.result.value)
-            debugPrint(response.request)
+    public func createAppApiUser(_ email: String, phone: String, pwd: String, completion:@escaping (_ Detail: AnyObject, _ Success: Bool) -> Void){
+        if let wechatUserInfo = localStorage.object(forKey: localStorageKeys.WeChatUserInfo){
+            let url = BaseURL + "/wp-api/wp-create-user.php?"
+        
+            let wechat_access_token = wechatUserInfo["access_token"] as! String
+            let wechat_refresh_token = wechatUserInfo["refresh_token"] as! String
+            let wechat_open_id = wechatUserInfo["openid"] as! String
+            let wechat_union_id = wechatUserInfo["unionid"] as! String
+            let user_head_image_url = wechatUserInfo["headimgurl"] as! String
+ 
+            /*
+            let wechat_access_token = "dddd"
+            let wechat_refresh_token = "cccc"
+            let wechat_open_id = "bbbbbb"
+            let wechat_union_id = "aaaaaa"
+            */
             
-        }
-    }
-    
-    public func getShopifyProduct(){
-        Alamofire.request(.GET, "https://29cdab026fea59770befdb2d76234529:b4676e8565059423b4a9e968302734a7@thechihuo.myshopify.com/admin/products.json?fields=id,images,title").responseJSON { response in
-            let data = response.result.value as! [String: AnyObject]
-            let products = data["products"]
-            print(products)
-            print(products!.count)
-        }
-    }
-    
-    public func sendPostToWooCommerce(){
-        let product = [
-            "product": [
-                "title": "Premium Quality",
-                "type": "simple",
-                "regular_price": "21.99",
-                "description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
-                "short_description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
-                "categories": [
-                    9,
-                    14
-                ],
-                "images": [
-                    [
-                        "src": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
-                        "position": 0
-                    ],
-                    [
-                        "src": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
-                        "position": 1
-                    ]
-                ]
+            let customerInfo = [
+                "wechat_access_token" : wechat_access_token,
+                "wechat_refresh_token" : wechat_refresh_token,
+                "wechat_openid" : wechat_open_id,
+                "wechat_unionid" : wechat_union_id,
+                "user_email" : email,
+                "user_pwd" : pwd,
+                "user_phone" : phone,
+                "user_image_url" : user_head_image_url
             ]
-        ]
         
-        let url:NSURL = NSURL(string: "https://www.miibox.com/wp2/wc-api/v3/products?consumer_key=ck_bf05ed05c63267d61f0875c88d7dce8cc9f32ddc&consumer_secret=cs_6e9ad19edad93dd2da2748e72eb8ecaa7abb097e")!
-        
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        
-        request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(product, options: [])
-        
-        Alamofire.request(request)
-            .responseJSON { response in
-                // do whatever you want here
-                switch response.result {
-                case .Failure(let error):
-                    print(error)
-                case .Success(let responseObject):
-                    print(responseObject)
-                    print(request)
+            Alamofire.request(.GET, url, parameters: customerInfo).responseString { response in
+                print(response.request)
+                let data = response.result.value!
+                print(data)
+                if data.contains("Success"){
+                    completion(Detail: "", Success: true)
+                }else{
+                    completion(Detail: data, Success: false)
                 }
+            }
+            
+        }else{
+            print("Wechat Info Nil")
         }
+    
     }
     
-    public func createWCCustomer(email: String, phone: String, pwd: String, completion:(Detail: AnyObject, Success: Bool) -> Void){
+    public func createWCCustomer(_ email: String, phone: String, pwd: String, completion:@escaping (_ Detail: AnyObject, _ Success: Bool) -> Void){
+        
+        let hud = JGProgressHUD(style: .light)
+        hud?.textLabel.text = "Creating Customer".localized()
+        hud?.show(in: self.view, animated: true)
+        
         let customerInfo = [
             "customer" : [
                 "email" : email,
@@ -97,22 +79,23 @@ extension UIViewController{
             ]
         ]
         
-        let url:NSURL = NSURL(string: "\(BaseURL)/wc-api/v3/customers?consumer_key=\(WCConsumerKey)&consumer_secret=\(WCSecretKey)")!
+        let url:URL = URL(string: "\(BaseURL)/wc-api/v3/customers?consumer_key=\(WCConsumerKey)&consumer_secret=\(WCSecretKey)")!
         
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "POST"
+        let request = NSMutableURLRequest(url: url)
+        request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(customerInfo, options: [])
+        request.httpBody = try! JSONSerialization.data(withJSONObject: customerInfo, options: [])
 
         
         Alamofire.request(request)
             .responseJSON { response in
-                // do whatever you want here
+                
                 switch response.result {
-                case .Failure(let error):
+                case .failure(let error):
                     completion(Detail: "Network Problem", Success: false)
+                    hud.textLabel.text = "Network Problem".localized()
                     
-                case .Success(let responseObject):
+                case .success(let responseObject):
                     let responseContent = responseObject as! [String : AnyObject]
                     if let errors = responseContent["errors"] as? [[String : AnyObject]]{
                         completion(Detail: errors, Success: true)
@@ -120,10 +103,21 @@ extension UIViewController{
                         completion(Detail: "Created Customer Success", Success: true)
                     }
             }
+            
+                hud.dismiss(animated: true)
+                hud.dismiss(afterDelay: 1.0)
+            
         }
+        
+        
     }
     
-    public func loginToWC(uname: String, pwd: String, completion:(Detail: String, Success: Bool) -> Void){
+    public func loginToWC(_ uname: String, pwd: String, completion:@escaping (_ Detail: String, _ Success: Bool) -> Void){
+        let hud = JGProgressHUD(style: .light)
+        hud?.textLabel.text = "Try to login"
+        hud?.show(in: self.view, animated: true)
+        
+        
         if let nonce = WCNonce{
             let loginInfo = [
                 "username" : uname,
@@ -133,21 +127,20 @@ extension UIViewController{
                 "login" : "Login"
             ]
         
-            
-            Alamofire.request(.POST, BaseURL, parameters: loginInfo)
+                Alamofire.request(.POST, BaseURL, parameters: loginInfo)
                 .validate().responseString { response in
+                    hud.dismiss()
                     switch response.result {
-                        case .Failure(let error):
+                        case .failure(let error):
                             completion(Detail: "Network Problem", Success: false)
                             
-                        case .Success(let responseObject):
+                        case .success(let responseObject):
                             LoginHTMLString = responseObject
-                            
                             if let
                                 headerFields = response.response?.allHeaderFields as? [String: String],
-                                URL = response.request?.URL
+                                let URL = response.request?.url
                             {
-                                let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(headerFields, forURL: URL)
+                                let cookies = HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: URL)
                                 if cookies.isEmpty{
                                     completion(Detail: "Username or password not correct.", Success: false)
                                 } else{
@@ -158,6 +151,8 @@ extension UIViewController{
                         
                     }
             }
+        } else {
+            self.showAlertDoNothing("Error", message: "Can't get Nonce from website")
         }
     
     }
@@ -167,11 +162,11 @@ extension UIViewController{
         Alamofire.request(.GET, url).validate()
             .responseString { response in
                 switch response.result{
-                case .Failure(let error):
+                case .failure(let error):
                     print(error)
-                case .Success(let responseObject):
+                case .success(let responseObject):
                     let html = responseObject
-                    if let doc = Kanna.HTML(html: html, encoding: NSUTF8StringEncoding) {
+                    if let doc = Kanna.HTML(html: html, encoding: String.Encoding.utf8) {
                         for link in doc.xpath(".//*[@id='woocommerce-login-nonce']"){
                             WCNonce = link["value"]
                         }
@@ -180,26 +175,28 @@ extension UIViewController{
         }
     }
     
-    public func getWCCustomerInfo(email: String, completion:(Detail: AnyObject, Success: Bool) -> Void){
-        let url:NSURL = NSURL(string: "\(BaseURL)/wc-api/v3/customers/email/\(email)?consumer_key=\(WCConsumerKey)&consumer_secret=\(WCSecretKey)")!
+    public func getWCCustomerInfo(_ email: String, completion:@escaping (_ Detail: AnyObject, _ Success: Bool) -> Void){
+        let hud = JGProgressHUD(style: .light)
+        hud?.textLabel.text = "Finding Customer".localized()
+        hud?.show(in: self.view, animated: true)
         
+        
+        let url:URL = URL(string: "\(BaseURL)/wc-api/v3/customers/email/\(email)?consumer_key=\(WCConsumerKey)&consumer_secret=\(WCSecretKey)")!
         Alamofire.request(.GET, url).validate()
             .responseJSON { response in
+                hud.dismiss()
+                
                 switch response.result{
-                case .Failure(let error):
-                    completion(Detail: "Network Problem", Success: false)
+                case .failure(let error):
+                    completion(Detail: error, Success: false)
                     
-                case .Success(let responseObject):
-                    /*print(responseObject)
-                    if let phone = responseObject["customer"]!!["billing_address"]!!["phone"]!{
-                        print(phone)
-                        localStorage.setObject(phone, forKey: localStorageKeys.UserPhone)
-                    }
- */
+                case .success(let responseObject):
                     completion(Detail: responseObject, Success: true)
                 }
         }
     }
+    
+
 }
 
 

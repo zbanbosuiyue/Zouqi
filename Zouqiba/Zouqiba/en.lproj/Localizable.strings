@@ -1,0 +1,52 @@
+/* 
+  Localizable.strings
+  Sample
+
+  Created by Roy Marmelstein on 05/08/2015.
+  Copyright (c) 2015 Roy Marmelstein. All rights reserved.
+*/
+
+"Retriving info from Wechat" = "Retriving info from Wechat";
+" Logined" = " Logined";
+" has been registered, but you need to setup your phone number." = " has been registered, but you need to setup your phone number.";
+" has been registered, please login." = " has been registered, please login.";
+" is login." = " is login.";
+" is successfully login" = " is successfully login";
+"Cancel" = "Cancel";
+"Cart" = "Cart";
+"Checkout" = "Checkout";
+"Creating Customer" = "Creating Customer";
+"Email Found" = "Email Found";
+"Event Calendar" = "Event Calendar";
+"Finding Customer" = "Finding Customer";
+"Home" = "Home";
+"Login" = "Login";
+"Logout" = "Logout";
+"Must Update to Newest Version" = "Must Update to Newest Version";
+"My Account" = "My Account";
+"Network Problem" = "Network Problem";
+"New Customer" = "New Customer";
+"New Version Available" = "New Version Available";
+"One Party Go" = "One Party Go";
+"One Party Go: Balalalalaalalla" = "One Party Go: Balalalalaalalla";
+"Party Go Share Message" = "Party Go Share Message";
+"Pick Sign Methods" = "Pick Sign Methods";
+"Please enter your email address" = "Please enter your email address";
+"Please enter your password" = "Please enter your password";
+"Please enter your phone number" = "Please enter your phone number";
+"Please setup your email as login name" = "Please setup your email as login name";
+"Retriving info from Wechat" = "Retriving info from Wechat";
+"Scan QR" = "Scan QR";
+"Setup Phone" = "Setup Phone";
+"Success" = "Success";
+"Switch Camera" = "Switch Camera";
+"Too Many QR Found. Can't Read." = "Too Many QR Found. Can't Read.";
+"Update" = "Update";
+"Welcome back" = "Welcome back";
+" please setup your email as login name" = " please setup your email as login name";
+"分享到Facebook" = "Share to FB";
+"分享到微信" = "Share to WeChat";
+"分享到朋友圈" = "Share to Moment";
+"Error" = "Error";
+"Wechat not installed." = "Wechat not installed.";
+"Password" = "Password";

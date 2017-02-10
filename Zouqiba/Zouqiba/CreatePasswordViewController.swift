@@ -9,6 +9,17 @@
 import UIKit
 
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 
 class CreatePasswordViewController: BasicViewController, UITextFieldDelegate{
@@ -21,25 +32,27 @@ class CreatePasswordViewController: BasicViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.hidden = false
+        navigationController?.navigationBar.isHidden = false
         
         PwdTextField.delegate = self
         VerifyPwdTextField.delegate = self
         ConfirmBtn.layer.cornerRadius = 5
-        ConfirmBtn.enabled = false
-        ConfirmBtn.backgroundColor = UIColor.grayColor()
+        ConfirmBtn.isEnabled = false
+        ConfirmBtn.backgroundColor = UIColor.init(rgb: 0xb9a6d4)
         
-        PwdTextField.secureTextEntry = true
-        VerifyPwdTextField.secureTextEntry = true
+        PwdTextField.isSecureTextEntry = true
+        VerifyPwdTextField.isSecureTextEntry = true
+        
+        TitleLabel.text = "Please enter your password".localized()
         
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(CreatePasswordViewController.closeKeyboard))
         self.view.addGestureRecognizer(singleTap)
     }
     
     
-    @IBAction func ClickConfirmBtn(sender: AnyObject) {
+    @IBAction func ClickConfirmBtn(_ sender: AnyObject) {
         let password = PwdTextField.text!
-        localStorage.setObject(password, forKey: localStorageKeys.UserPwd)
+        localStorage.set(password, forKey: localStorageKeys.UserPwd)
         print("confirmed")
         loginProfileCheck()
     }
@@ -51,11 +64,11 @@ class CreatePasswordViewController: BasicViewController, UITextFieldDelegate{
     
     
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == VerifyPwdTextField{
 
             let userEnteredString = textField.text! as NSString
-            let text = userEnteredString.stringByReplacingCharactersInRange(range, withString: string)
+            let text = userEnteredString.replacingCharacters(in: range, with: string)
             verifyPwd(self.PwdTextField.text!,verifyText: text)
 
         }
@@ -63,7 +76,7 @@ class CreatePasswordViewController: BasicViewController, UITextFieldDelegate{
     }
 
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == PwdTextField{
             self.VerifyPwdTextField.becomeFirstResponder()
         } else {
@@ -74,31 +87,31 @@ class CreatePasswordViewController: BasicViewController, UITextFieldDelegate{
         return true
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
 
         if textField == VerifyPwdTextField{
             verifyPwd(self.PwdTextField.text!,verifyText: textField.text!)
         } else{
             if textField.text?.characters.count < 6{
-                ConfirmBtn.enabled = false
-                ConfirmBtn.backgroundColor = UIColor.grayColor()
+                ConfirmBtn.isEnabled = false
+                ConfirmBtn.backgroundColor = UIColor.init(rgb: 0xb9a6d4)
                 textField.backgroundColor = UIColor.init(rgb: 0xf98886)
             } else{
-                textField.backgroundColor = UIColor.clearColor()
+                textField.backgroundColor = UIColor.clear
             }
         }
     }
     
-    func verifyPwd(pwdText: String, verifyText: String){
+    func verifyPwd(_ pwdText: String, verifyText: String){
         if pwdText.characters.count >= 6{
             if pwdText == verifyText{
-                ConfirmBtn.enabled = true
+                ConfirmBtn.isEnabled = true
                 ConfirmBtn.backgroundColor = UIColor.init(rgb: 0x744eaa)
-                VerifyPwdTextField.backgroundColor = UIColor.clearColor()
-                PwdTextField.backgroundColor = UIColor.clearColor()
+                VerifyPwdTextField.backgroundColor = UIColor.clear
+                PwdTextField.backgroundColor = UIColor.clear
             } else{
-                ConfirmBtn.enabled = false
-                ConfirmBtn.backgroundColor = UIColor.grayColor()
+                ConfirmBtn.isEnabled = false
+                ConfirmBtn.backgroundColor = UIColor.init(rgb: 0xb9a6d4)
                 VerifyPwdTextField.backgroundColor = UIColor.init(rgb: 0xf98886)
             }
         }

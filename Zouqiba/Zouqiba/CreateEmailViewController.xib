@@ -20,24 +20,18 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EMM-27-hYv">
-                    <rect key="frame" x="20" y="238" width="560" height="35"/>
+                    <rect key="frame" x="20" y="239" width="560" height="35"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="200" id="CAD-LT-O30"/>
                         <constraint firstAttribute="height" constant="35" id="Gu2-oY-HG7"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="CAD-LT-O30"/>
-                        </mask>
-                    </variation>
                     <connections>
                         <outlet property="delegate" destination="-1" id="CsO-Dc-221"/>
                     </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8jl-vL-vxJ">
-                    <rect key="frame" x="20" y="307" width="560" height="33"/>
+                    <rect key="frame" x="20" y="308" width="560" height="33"/>
                     <color key="backgroundColor" red="0.57943260689999998" green="0.093952637539999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <size key="titleShadowOffset" width="2.2250738585072014e-308" height="2.2250738585072014e-308"/>
@@ -49,7 +43,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your email address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="tOu-NB-p0w">
-                    <rect key="frame" x="137" y="180" width="326" height="28"/>
+                    <rect key="frame" x="137" y="181" width="326" height="28"/>
                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -58,29 +52,14 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="EMM-27-hYv" firstAttribute="top" secondItem="8jl-vL-vxJ" secondAttribute="bottom" constant="-102" id="0xu-2D-HGs"/>
-                <constraint firstItem="tOu-NB-p0w" firstAttribute="leading" relation="lessThanOrEqual" secondItem="M4b-Kl-13E" secondAttribute="leading" constant="20" id="FB0-nD-s9e"/>
                 <constraint firstItem="EMM-27-hYv" firstAttribute="top" secondItem="tOu-NB-p0w" secondAttribute="bottom" constant="30" id="JA3-ET-4f0"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tOu-NB-p0w" secondAttribute="trailing" constant="20" id="PGb-ET-aNM"/>
                 <constraint firstItem="EMM-27-hYv" firstAttribute="leading" secondItem="M4b-Kl-13E" secondAttribute="leading" constant="20" id="REy-8I-GB1"/>
                 <constraint firstAttribute="trailing" secondItem="8jl-vL-vxJ" secondAttribute="trailing" constant="20" id="WEg-JR-5gA"/>
                 <constraint firstItem="8jl-vL-vxJ" firstAttribute="leading" secondItem="M4b-Kl-13E" secondAttribute="leading" constant="20" id="YW2-JR-zZV"/>
-                <constraint firstItem="8jl-vL-vxJ" firstAttribute="top" secondItem="M4b-Kl-13E" secondAttribute="top" constant="20" id="c1P-vN-QSj"/>
-                <constraint firstItem="tOu-NB-p0w" firstAttribute="centerX" secondItem="M4b-Kl-13E" secondAttribute="centerX" id="c5m-aZ-q0c"/>
-                <constraint firstItem="EMM-27-hYv" firstAttribute="centerX" secondItem="M4b-Kl-13E" secondAttribute="centerX" id="eCx-5n-Teu"/>
                 <constraint firstAttribute="trailing" secondItem="EMM-27-hYv" secondAttribute="trailing" constant="20" id="fyK-3e-SOa"/>
-                <constraint firstItem="EMM-27-hYv" firstAttribute="top" secondItem="8jl-vL-vxJ" secondAttribute="bottom" constant="128" id="jox-Cb-8yy"/>
-                <constraint firstItem="tOu-NB-p0w" firstAttribute="top" secondItem="M4b-Kl-13E" secondAttribute="bottom" multiplier="0.3" symbolic="YES" id="sPV-d5-lAz"/>
-                <constraint firstItem="tOu-NB-p0w" firstAttribute="leading" secondItem="EMM-27-hYv" secondAttribute="trailing" constant="-262" id="t7n-nu-2Ni"/>
+                <constraint firstItem="tOu-NB-p0w" firstAttribute="top" secondItem="M4b-Kl-13E" secondAttribute="bottom" multiplier="0.3" constant="1" id="ngI-p0-9AQ"/>
+                <constraint firstItem="tOu-NB-p0w" firstAttribute="centerX" secondItem="EMM-27-hYv" secondAttribute="centerX" id="v6a-Ys-h5b"/>
             </constraints>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="FB0-nD-s9e"/>
-                    <exclude reference="t7n-nu-2Ni"/>
-                    <exclude reference="eCx-5n-Teu"/>
-                    <exclude reference="jox-Cb-8yy"/>
-                    <exclude reference="c1P-vN-QSj"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="204" y="291"/>
         </view>
     </objects>

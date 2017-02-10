@@ -16,13 +16,13 @@ class CameraViewController: UIViewController{
     
     //Camera Capture requiered properties
     var videoDataOutput: AVCaptureVideoDataOutput!;
-    var videoDataOutputQueue : dispatch_queue_t!;
+    var videoDataOutputQueue : DispatchQueue!;
     var previewLayer:AVCaptureVideoPreviewLayer!;
     var captureDevice : AVCaptureDevice!
     var session : AVCaptureSession!
     var currentFrame:CIImage!
     var done = false;
-    var cameraPosition = AVCaptureDevicePosition.Back
+    var cameraPosition = AVCaptureDevicePosition.back
     var isDetect = false
     var detectImage: UIImage!
     var isFace = false
@@ -32,14 +32,14 @@ class CameraViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        previewView = UIView(frame: CGRectMake(0, 0, AppWidth, AppHeight));
-        previewView.contentMode = UIViewContentMode.ScaleAspectFit
+        previewView = UIView(frame: CGRect(x: 0, y: 0, width: AppWidth, height: AppHeight));
+        previewView.contentMode = UIViewContentMode.scaleAspectFit
         view.addSubview(previewView);
         
         //Add a box view
-        boxView = UIImageView(frame: CGRectMake(0, 0, AppWidth, AppHeight));
+        boxView = UIImageView(frame: CGRect(x: 0, y: 0, width: AppWidth, height: AppHeight));
         boxView.alpha = 0.6
-        boxView.contentMode = .ScaleAspectFit
+        boxView.contentMode = .scaleAspectFit
         view.addSubview(self.boxView);
 
         setupAVCapture(cameraPosition);
@@ -48,19 +48,19 @@ class CameraViewController: UIViewController{
         
         previewView.addGestureRecognizer(gesture)
         
-        let switchCameraBtn = UIButton(frame: CGRectMake((AppWidth - 200)/2, AppHeight - 40, 200, 20))
-        switchCameraBtn.addTarget(self, action: #selector(CameraViewController.switchCamera), forControlEvents: .TouchUpInside)
-        switchCameraBtn.setTitle("Switch Camera", forState: .Normal)
+        let switchCameraBtn = UIButton(frame: CGRect(x: (AppWidth - 200)/2, y: AppHeight - 40, width: 200, height: 20))
+        switchCameraBtn.addTarget(self, action: #selector(CameraViewController.switchCamera), for: .touchUpInside)
+        switchCameraBtn.setTitle("Switch Camera".localized(), for: UIControlState())
         
-        switchDetectFuncBtn = UIButton(frame: CGRectMake((AppWidth - 200)/2, 100, 200, 20))
-        switchDetectFuncBtn.addTarget(self, action: #selector(CameraViewController.switchDetectFunc), forControlEvents: .TouchUpInside)
+        switchDetectFuncBtn = UIButton(frame: CGRect(x: (AppWidth - 200)/2, y: 100, width: 200, height: 20))
+        switchDetectFuncBtn.addTarget(self, action: #selector(CameraViewController.switchDetectFunc), for: .touchUpInside)
         
-        switchDetectFuncBtn.setTitle("QR Code", forState: .Normal)
+        switchDetectFuncBtn.setTitle("QR Code", for: UIControlState())
         
         
-        QRCodeLabel = UILabel(frame: CGRectMake((AppWidth - 200)/2, AppHeight - 80, 200, 40))
-        QRCodeLabel.contentMode = .Center
-        QRCodeLabel.textColor = UIColor.whiteColor()
+        QRCodeLabel = UILabel(frame: CGRect(x: (AppWidth - 200)/2, y: AppHeight - 80, width: 200, height: 40))
+        QRCodeLabel.contentMode = .center
+        QRCodeLabel.textColor = UIColor.white
         QRCodeLabel.adjustsFontSizeToFitWidth = true
         QRCodeLabel.numberOfLines = 0
         QRCodeLabel.text = "QR: "
@@ -71,10 +71,10 @@ class CameraViewController: UIViewController{
         view.addSubview(QRCodeLabel)
     }
     
-    func heightForView(text:String, font:UIFont, width:CGFloat) -> CGFloat{
-        let label:UILabel = UILabel(frame: CGRectMake(0, 0, width, CGFloat.max))
+    func heightForView(_ text:String, font:UIFont, width:CGFloat) -> CGFloat{
+        let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
         label.numberOfLines = 0
-        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.font = font
         label.text = text
         
@@ -83,10 +83,10 @@ class CameraViewController: UIViewController{
     }
     
     func switchCamera(){
-        if cameraPosition == .Front{
-            cameraPosition = .Back
+        if cameraPosition == .front{
+            cameraPosition = .back
         } else{
-            cameraPosition = .Front
+            cameraPosition = .front
         }
         session.stopRunning()
         setupAVCapture(cameraPosition)
@@ -95,29 +95,29 @@ class CameraViewController: UIViewController{
     func switchDetectFunc(){
         if isFace {
             isFace = false
-            QRCodeLabel.hidden = false
-            switchDetectFuncBtn.setTitle("QR Code", forState: .Normal)
+            QRCodeLabel.isHidden = false
+            switchDetectFuncBtn.setTitle("QR Code", for: UIControlState())
             
         } else {
             isFace = true
-            QRCodeLabel.hidden = true
-            switchDetectFuncBtn.setTitle("Face", forState: .Normal)
+            QRCodeLabel.isHidden = true
+            switchDetectFuncBtn.setTitle("Face", for: UIControlState())
         }
     }
     
-    func touchInCamera(touchPoint: UITapGestureRecognizer){
-        var focusPoint = CGPoint(x: touchPoint.locationInView(previewView).y / AppHeight, y: 1.0 - touchPoint.locationInView(previewView).x / AppWidth)
+    func touchInCamera(_ touchPoint: UITapGestureRecognizer){
+        let focusPoint = CGPoint(x: touchPoint.location(in: previewView).y / AppHeight, y: 1.0 - touchPoint.location(in: previewView).x / AppWidth)
         
         do{
             if let device = captureDevice {
                 try device.lockForConfiguration()
-                if device.focusPointOfInterestSupported {
+                if device.isFocusPointOfInterestSupported {
                     device.focusPointOfInterest = focusPoint
-                    device.focusMode = AVCaptureFocusMode.AutoFocus
+                    device.focusMode = AVCaptureFocusMode.autoFocus
                 }
-                if device.exposurePointOfInterestSupported {
+                if device.isExposurePointOfInterestSupported {
                     device.exposurePointOfInterest = focusPoint
-                    device.exposureMode = AVCaptureExposureMode.AutoExpose
+                    device.exposureMode = AVCaptureExposureMode.autoExpose
                 }
                 device.unlockForConfiguration()
                 }
@@ -127,7 +127,7 @@ class CameraViewController: UIViewController{
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if !done {
             session.startRunning();
         }
@@ -137,14 +137,14 @@ class CameraViewController: UIViewController{
         super.didReceiveMemoryWarning()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         session.stopRunning()
     }
     
-    override func shouldAutorotate() -> Bool {
-        if (UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeLeft ||
-            UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeRight ||
-            UIDevice.currentDevice().orientation == UIDeviceOrientation.Unknown) {
+    override var shouldAutorotate : Bool {
+        if (UIDevice.current.orientation == UIDeviceOrientation.landscapeLeft ||
+            UIDevice.current.orientation == UIDeviceOrientation.landscapeRight ||
+            UIDevice.current.orientation == UIDeviceOrientation.unknown) {
             return false;
         }
         else {
@@ -156,18 +156,18 @@ class CameraViewController: UIViewController{
 
 // AVCaptureVideoDataOutputSampleBufferDelegate protocol and related methods
 extension CameraViewController:  AVCaptureVideoDataOutputSampleBufferDelegate{
-    func setupAVCapture(cameraPosition: AVCaptureDevicePosition){
+    func setupAVCapture(_ cameraPosition: AVCaptureDevicePosition){
         session = AVCaptureSession()
         session.sessionPreset = AVCaptureSessionPresetHigh
         
         
         let devices = AVCaptureDevice.devices();
         // Loop through all the capture devices on this phone
-        for device in devices {
+        for device in devices! {
             // Make sure this particular device supports video
-            if (device.hasMediaType(AVMediaTypeVideo)) {
+            if ((device as AnyObject).hasMediaType(AVMediaTypeVideo)) {
                 // Finally check the position and confirm we've got the front camera
-                if(device.position == cameraPosition) {
+                if((device as AnyObject).position == cameraPosition) {
                     captureDevice = device as? AVCaptureDevice;
                     if captureDevice != nil {
                         beginSession();
@@ -197,12 +197,12 @@ extension CameraViewController:  AVCaptureVideoDataOutputSampleBufferDelegate{
         
         self.videoDataOutput = AVCaptureVideoDataOutput();
         self.videoDataOutput.alwaysDiscardsLateVideoFrames=true;
-        self.videoDataOutputQueue = dispatch_queue_create("VideoDataOutputQueue", DISPATCH_QUEUE_SERIAL);
+        self.videoDataOutputQueue = DispatchQueue(label: "VideoDataOutputQueue", attributes: []);
         self.videoDataOutput.setSampleBufferDelegate(self, queue:self.videoDataOutputQueue);
         if session.canAddOutput(self.videoDataOutput){
             session.addOutput(self.videoDataOutput);
         }
-        self.videoDataOutput.connectionWithMediaType(AVMediaTypeVideo).enabled = true;
+        self.videoDataOutput.connection(withMediaType: AVMediaTypeVideo).isEnabled = true;
         
         self.previewLayer = AVCaptureVideoPreviewLayer(session: self.session);
         self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspect;
@@ -215,7 +215,7 @@ extension CameraViewController:  AVCaptureVideoDataOutputSampleBufferDelegate{
         
     }
     
-    func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
         self.convertImageFromCMSampleBufferRef(sampleBuffer);
     }
     
@@ -226,10 +226,10 @@ extension CameraViewController:  AVCaptureVideoDataOutputSampleBufferDelegate{
         done = false;
     }
     
-    func convertImageFromCMSampleBufferRef(sampleBuffer:CMSampleBuffer){
-        let pixelBuffer:CVPixelBufferRef = CMSampleBufferGetImageBuffer(sampleBuffer)!;
-        let ciImage:CIImage = CIImage(CVPixelBuffer: pixelBuffer)
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
+    func convertImageFromCMSampleBufferRef(_ sampleBuffer:CMSampleBuffer){
+        let pixelBuffer:CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)!;
+        let ciImage:CIImage = CIImage(cvPixelBuffer: pixelBuffer)
+        let delayTime = DispatchTime.now() + Double(Int64(0.1 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
         
         if isFace{
             detectFace(ciImage)
@@ -239,16 +239,16 @@ extension CameraViewController:  AVCaptureVideoDataOutputSampleBufferDelegate{
         
         
         if isDetect {
-            dispatch_async(dispatch_get_main_queue())
+            DispatchQueue.main.async
             {
                 if !self.isFace {
                     if self.verifyUrl(QRMessage){
                         self.QRCodeLabel.text = "URL: \(QRMessage)"
                         let seconds = 0.5
                         let delay = seconds * Double(NSEC_PER_SEC)
-                        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-                        dispatch_after(delayTime, dispatch_get_main_queue(), {
-                            self.navigationController?.popViewControllerAnimated(true)
+                        let delayTime = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
+                        DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {
+                            self.navigationController?.popViewController(animated: true)
                         })
                     } else{
                         self.QRCodeLabel.text = "QR Code: \(QRMessage) is Not a Valid URL."
@@ -259,7 +259,7 @@ extension CameraViewController:  AVCaptureVideoDataOutputSampleBufferDelegate{
                 self.boxView.image = self.detectImage
             }
         } else{
-            dispatch_after(delayTime, dispatch_get_main_queue()) {
+            DispatchQueue.main.asyncAfter(deadline: delayTime) {
                 self.boxView.image = nil
                 self.QRCodeLabel.text = "QR: "
             }
@@ -267,12 +267,12 @@ extension CameraViewController:  AVCaptureVideoDataOutputSampleBufferDelegate{
     }
     
     
-    func detectFace(ciimg: CIImage){
+    func detectFace(_ ciimg: CIImage){
         isDetect = false
 
-        let scale = UIScreen.mainScreen().scale
+        let scale = UIScreen.main.scale
         
-        let ratio = UIImage(CIImage: ciimg).size.height / AppWidth
+        let ratio = UIImage(ciImage: ciimg).size.height / AppWidth
         
             
         UIGraphicsBeginImageContextWithOptions(boxView.frame.size, false, scale)
@@ -280,14 +280,14 @@ extension CameraViewController:  AVCaptureVideoDataOutputSampleBufferDelegate{
         let context = UIGraphicsGetCurrentContext()
     
         let cid = CIDetector(ofType:CIDetectorTypeFace, context:nil, options:[CIDetectorAccuracy: CIDetectorAccuracyHigh])
-        let results = cid.featuresInImage(ciimg, options: NSDictionary() as? [String : AnyObject])
+        let results = cid?.features(in: ciimg, options: NSDictionary() as? [String : AnyObject])
         
-        for r in results {
+        for r in results! {
             let face = r as! CIFaceFeature
             
-            CGContextSetStrokeColorWithColor(context, UIColor.purpleColor().CGColor)
-            let rect = CGRectMake(face.bounds.origin.y/ratio, face.bounds.origin.x/ratio, face.bounds.height/ratio, face.bounds.width/ratio)
-            CGContextStrokeRectWithWidth(context, rect, 2.0)
+            context?.setStrokeColor(UIColor.purple.cgColor)
+            let rect = CGRect(x: face.bounds.origin.y/ratio, y: face.bounds.origin.x/ratio, width: face.bounds.height/ratio, height: face.bounds.width/ratio)
+            context?.stroke(rect, width: 2.0)
             isDetect = true
             detectImage = UIGraphicsGetImageFromCurrentImageContext()
         }
@@ -295,12 +295,12 @@ extension CameraViewController:  AVCaptureVideoDataOutputSampleBufferDelegate{
     }
     
     
-    func detectQRcode(ciimg: CIImage){
+    func detectQRcode(_ ciimg: CIImage){
         isDetect = false
         
-        let scale = UIScreen.mainScreen().scale
+        let scale = UIScreen.main.scale
         
-        let ratio = UIImage(CIImage: ciimg).size.height / AppWidth
+        let ratio = UIImage(ciImage: ciimg).size.height / AppWidth
         
         
         UIGraphicsBeginImageContextWithOptions(boxView.frame.size, false, scale)
@@ -308,36 +308,36 @@ extension CameraViewController:  AVCaptureVideoDataOutputSampleBufferDelegate{
         let context = UIGraphicsGetCurrentContext()
         
         let cid = CIDetector(ofType:CIDetectorTypeQRCode, context:nil, options:[CIDetectorAccuracy: CIDetectorAccuracyHigh])
-        let results = cid.featuresInImage(ciimg, options: NSDictionary() as? [String : AnyObject])
+        let results = cid?.features(in: ciimg, options: NSDictionary() as? [String : AnyObject])
         
         
-        for r in results {
+        for r in results! {
             let QR = r as! CIQRCodeFeature
             //print("QR String: \(QR.messageString)")
             QRMessage = QR.messageString
             
-            print(UIImage(CIImage: ciimg).size)
+            print(UIImage(ciImage: ciimg).size)
             //print(boxView.frame.size)
             
-            CGContextSetStrokeColorWithColor(context, UIColor.purpleColor().CGColor)
-            let rect = CGRectMake(QR.bounds.origin.y/ratio, QR.bounds.origin.x/ratio, QR.bounds.height/ratio, QR.bounds.width/ratio)
+            context?.setStrokeColor(UIColor.purple.cgColor)
+            let rect = CGRect(x: QR.bounds.origin.y/ratio, y: QR.bounds.origin.x/ratio, width: QR.bounds.height/ratio, height: QR.bounds.width/ratio)
             //print(rect)
-            CGContextStrokeRectWithWidth(context, rect, 2.0)
+            context?.stroke(rect, width: 2.0)
             isDetect = true
             detectImage = UIGraphicsGetImageFromCurrentImageContext()
         }
         
-        if results.count > 1 {
-            QRMessage = "Too Many QR Found. Can't Read."
+        if (results?.count)! > 1 {
+            QRMessage = "Too Many QR Found. Can't Read.".localized()
         }
         
         UIGraphicsEndImageContext()
     }
     
-    func verifyUrl (urlString: String?) -> Bool {
+    func verifyUrl (_ urlString: String?) -> Bool {
         if let urlString = urlString {
-            if let url  = NSURL(string: urlString) {
-                return UIApplication.sharedApplication().canOpenURL(url)
+            if let url  = URL(string: urlString) {
+                return UIApplication.shared.canOpenURL(url)
             }
         }
         return false

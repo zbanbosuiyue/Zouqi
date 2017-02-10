@@ -1,0 +1,60 @@
+/* 
+  Localizable.strings
+  Sample
+
+  Created by Roy Marmelstein on 05/08/2015.
+  Copyright (c) 2015 Roy Marmelstein. All rights reserved.
+*/
+
+/*
+ Localizable.strings
+ Sample
+ 
+ Created by Roy Marmelstein on 05/08/2015.
+ Copyright (c) 2015 Roy Marmelstein. All rights reserved.
+ */
+
+" Logined" = " 成功登陸";
+" has been registered, but you need to setup your phone number." = " 用戶已註冊，需綁定手機.";
+" has been registered, please login." = " 用戶已註冊, 請登陸.";
+" is login." =  "已經登陸.";
+" is successfully login" = " 已經成功登陸";
+"Cancel" = "取消";
+"Cart" = "購物車";
+"Checkout" = "結賬";
+"Creating Customer" = "創建用戶";
+"Email Found" = "找到當前用戶";
+"Event Calendar" = "事件日歷";
+"Finding Customer" = "找到用戶";
+"Home" = "主頁";
+"Login" = "登陸";
+"Logout" = "登出";
+"Must Update to Newest Version" = "需升級到最新版";
+"My Account" = "我的賬戶";
+"Network Problem" = "網絡連接問題";
+"New Customer" = " 新用戶";
+"New Version Available" = "新版本已發布";
+"One Party Go" = "One Party Go";
+"One Party Go: Balalalalaalalla" = "One Party Go: 啦啦啦";
+"Party Go Share Message" = "Party Go 分享信息";
+"Pick Sign Methods" = "選擇登陸方式";
+"Please enter your email address" = "請輸入email";
+"Please enter your password" = "請輸入密碼";
+"Please enter your phone number" = "請輸入電話號碼";
+"Please setup your email as login name" = "請設置email";
+"Retriving info from Wechat" = "從微信獲取用戶信息";
+"Scan QR" = "掃描QR code";
+"Setup Phone" = "設置手機";
+"Success" = "成功";
+"Switch Camera" = "切換攝像頭";
+"Too Many QR Found. Can't Read." = "太多QR code了，無法讀取";
+"Update" = "更新";
+"Welcome back" = "歡迎回來";
+" please setup your email as login name" = " 请設置登陸email";
+"分享到Facebook" = "分享到Facebook";
+"分享到微信" = "分享到微信";
+"分享到朋友圈" = "分享到朋友圈";
+"error" = "錯誤";
+"Wechat not installed." = "沒有安裝微信";
+"Password" = "密碼";
+

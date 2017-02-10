@@ -1,0 +1,51 @@
+/* 
+  Localizable.strings
+  Sample
+
+  Created by Roy Marmelstein on 05/08/2015.
+  Copyright (c) 2015 Roy Marmelstein. All rights reserved.
+*/
+
+" Logined" = " 成功登陆";
+" has been registered, but you need to setup your phone number." = " 用户已注册，需绑定手机.";
+" has been registered, please login." = " 用户已注册, 请登陆.";
+" is login." =  "已经登陆.";
+" is successfully login" = " 已经成功登陆";
+"Cancel" = "取消";
+"Cart" = "购物车";
+"Checkout" = "结账";
+"Creating Customer" = "创建用户";
+"Email Found" = "找到当前用户";
+"Event Calendar" = "事件日历";
+"Finding Customer" = "找到用户";
+"Home" = "主页";
+"Login" = "登陆";
+"Logout" = "登出";
+"Must Update to Newest Version" = "需升级到最新版";
+"My Account" = "我的账户";
+"Network Problem" = "网络连接问题";
+"New Customer" = " 新用户";
+"New Version Available" = "新版本已发布";
+"One Party Go" = "One Party Go";
+"One Party Go: Balalalalaalalla" = "One Party Go: 啦啦啦";
+"Party Go Share Message" = "Party Go 分享信息";
+"Pick Sign Methods" = "选择登陆方式";
+"Please enter your email address" = "请输入email";
+"Please enter your password" = "请输入密码";
+"Please enter your phone number" = "请输入电话号码";
+"Please setup your email as login name" = "请设置email";
+"Retriving info from Wechat" = "从微信获取用户信息";
+"Scan QR" = "扫描QR code";
+"Setup Phone" = "设置手机";
+"Success" = "成功";
+"Switch Camera" = "切换摄像头";
+"Too Many QR Found. Can't Read." = "太多QR code了，无法读取";
+"Update" = "更新";
+"Welcome back" = "欢迎回来";
+" please setup your email as login name" = " 请设置登陆email";
+"分享到Facebook" = "分享到Facebook";
+"分享到微信" = "分享到微信";
+"分享到朋友圈" = "分享到朋友圈";
+"error" = "错误";
+"Wechat not installed." = "没有安装微信";
+"Password" = "密码";

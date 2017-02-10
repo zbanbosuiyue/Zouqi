@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="LoginBtn" destination="uIM-0j-jhQ" id="h67-V3-QHX"/>
                 <outlet property="LoginPwdTextField" destination="Imm-mQ-N46" id="wEO-30-cb0"/>
+                <outlet property="TitleLable" destination="V5h-48-G7g" id="2v6-Hd-MjU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Imm-mQ-N46">
-                    <rect key="frame" x="20" y="238" width="560" height="35"/>
+                    <rect key="frame" x="20" y="239" width="560" height="35"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="8Ew-g5-ERI"/>
                         <constraint firstAttribute="height" constant="35" id="mhq-4T-0dj"/>
@@ -36,7 +37,7 @@
                     </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uIM-0j-jhQ">
-                    <rect key="frame" x="20" y="307" width="560" height="33"/>
+                    <rect key="frame" x="20" y="308" width="560" height="33"/>
                     <color key="backgroundColor" red="0.57943260689999998" green="0.093952637539999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <size key="titleShadowOffset" width="2.2250738585072014e-308" height="2.2250738585072014e-308"/>
@@ -47,8 +48,8 @@
                         <action selector="ClickLoginBtn:" destination="-1" eventType="touchUpInside" id="Qy3-QJ-XmG"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="V5h-48-G7g">
-                    <rect key="frame" x="250" y="180" width="99" height="28"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your password" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="V5h-48-G7g">
+                    <rect key="frame" x="195" y="181" width="209.5" height="28"/>
                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -56,7 +57,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="V5h-48-G7g" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="bottom" multiplier="0.3" symbolic="YES" id="9EE-xO-eYY"/>
+                <constraint firstItem="V5h-48-G7g" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="bottom" multiplier="0.3" constant="1" id="9EE-xO-eYY"/>
                 <constraint firstItem="uIM-0j-jhQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="GiH-Ig-eFP"/>
                 <constraint firstItem="Imm-mQ-N46" firstAttribute="top" secondItem="uIM-0j-jhQ" secondAttribute="bottom" constant="-102" id="LSc-wD-ohF"/>
                 <constraint firstItem="V5h-48-G7g" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="SDa-Gz-XoG"/>

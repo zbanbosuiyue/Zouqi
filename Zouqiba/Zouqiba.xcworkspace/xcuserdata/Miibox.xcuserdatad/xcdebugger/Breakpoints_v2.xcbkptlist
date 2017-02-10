@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Zouqiba/LeadingViewController.swift"
-            timestampString = "494738969.427149"
+            timestampString = "496170250.09614"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "phoneLogin(_:)"
-            landmarkType = "5">
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "deinit"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -26,13 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Zouqiba/LeadingViewController.swift"
-            timestampString = "494738969.427149"
+            timestampString = "496170250.09614"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "phoneLogin(_:)"
-            landmarkType = "5">
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "deinit"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,13 +42,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Zouqiba/AppDelegate.swift"
-            timestampString = "494795921.466127"
+            timestampString = "496194321.920202"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
-            landmarkName = "getWeChatAccessAndRefreshToken(_:)"
-            landmarkType = "5">
+            startingLineNumber = "225"
+            endingLineNumber = "225"
+            landmarkName = "AppDelegate"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -58,13 +58,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Zouqiba/AppDelegate.swift"
-            timestampString = "494795921.466127"
+            timestampString = "496194321.920202"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
-            landmarkName = "getWeChatAccessAndRefreshToken(_:)"
-            landmarkType = "5">
+            startingLineNumber = "225"
+            endingLineNumber = "225"
+            landmarkName = "AppDelegate"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -142,7 +142,7 @@
             startingLineNumber = "110"
             endingLineNumber = "110"
             landmarkName = "touchInCamera(_:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -152,11 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Zouqiba/WooCommerceAPI.swift"
-            timestampString = "494897672.792152"
+            timestampString = "496194239.23959"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "createWCCustomer(_:phone:pwd:completion:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -168,11 +168,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Zouqiba/WooCommerceAPI.swift"
-            timestampString = "494902067.242674"
+            timestampString = "496194239.23959"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
             landmarkName = "getWCNonce()"
             landmarkType = "5">
          </BreakpointContent>
@@ -184,11 +184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Zouqiba/WooCommerceAPI.swift"
-            timestampString = "494902067.242674"
+            timestampString = "496194239.23959"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
             landmarkName = "getWCNonce()"
             landmarkType = "5">
          </BreakpointContent>
@@ -245,13 +245,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Zouqiba/MainExtension.swift"
-            timestampString = "494917582.713257"
+            filePath = "Zouqiba/LoginEnterPwdViewController.swift"
+            timestampString = "495353944.355131"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "createProfile()"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "ClickLoginBtn(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -261,14 +261,46 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Zouqiba/LoginEnterPwdViewController.swift"
-            timestampString = "494900087.28603"
+            filePath = "Zouqiba/AppDelegate.swift"
+            timestampString = "496194321.920202"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "ClickLoginBtn(_:)"
-            landmarkType = "5">
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "AppDelegate"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Zouqiba/AppDelegate.swift"
+            timestampString = "496194321.920202"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
+            landmarkName = "AppDelegate"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Zouqiba/AppDelegate.swift"
+            timestampString = "496194321.920202"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "getWeChatUserInfo(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

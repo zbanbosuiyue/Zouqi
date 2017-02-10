@@ -44,6 +44,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>JGProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Kanna.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -82,17 +87,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>52D82BFDD1E808D9CB257431922C1EE4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>55BD3033702F62283C42C1F6E037342D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>5F1E284251A920A97D91C2B01DEFDC7A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>617B0FC57CCB604D47A24E6198763D04</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,12 +117,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C4C8E68251E6DA02E1819F3293DA19A4</key>
+		<key>9D0F2E5EA1B46A5D72FFD42B0B39DBBC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>C554516007ADC52D0E6F4E91D9313CEF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CF5633ABD4D4966FD623E835AE2DFA17</key>
 		<dict>
 			<key>primary</key>
 			<true/>

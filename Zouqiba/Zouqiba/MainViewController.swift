@@ -7,56 +7,51 @@
 //
 
 import UIKit
-import ImagePicker
+
 
 class MainViewController: MainBasicViewController{
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        initViews()
 
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if QRMessage != nil{
             gotoURL(QRMessage)
         }
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     func initViews(){
         setNav()
-        setupUserImage()
-        getCookiesAndRedirect()
         setMainMenuView()
         setMoreMenu()
         setKKMainWebView()
+        
+        setupUserImage()
+        getCookiesAndRedirect()
         isInit = false
     }
     
     
     func setupUserImage(){
-        if let userHeadImgURL = localStorage.objectForKey(localStorageKeys.UserHeadImageURL){
+        if let userHeadImgURL = localStorage.object(forKey: localStorageKeys.UserHeadImageURL){
         }else{
-            let createImageAlter = UIAlertController(title: "Add Profile", message: "You can add your profile now or later", preferredStyle: .Alert)
-            let createImageOKAction = UIAlertAction(title: "Setup Now", style: .Default, handler: { (UIAlertAction) in
-                let imagePickerVC = ImagePickerController()
-                imagePickerVC.navigationController?.navigationBar.hidden = true
-                imagePickerVC.delegate = self
-                imagePickerVC.imageLimit = 1
-                
-                self.navigationController?.pushViewController(imagePickerVC, animated: true)
+            let createImageAlter = UIAlertController(title: "Add Profile", message: "You can add your profile now or later", preferredStyle: .alert)
+            let createImageOKAction = UIAlertAction(title: "Setup Now", style: .default, handler: { (UIAlertAction) in
+                self.setUserProfile()
             })
             
-            let createImageCancelAction = UIAlertAction(title: "Later", style: .Cancel, handler:nil)
-            
-            
-            
+            let createImageCancelAction = UIAlertAction(title: "Later", style: .cancel, handler:nil)
+   
             createImageAlter.addAction(createImageOKAction)
             createImageAlter.addAction(createImageCancelAction)
-            dispatch_async(dispatch_get_main_queue(), {
-                self.presentViewController(createImageAlter, animated: true, completion: {
+            DispatchQueue.main.async(execute: {
+                self.present(createImageAlter, animated: true, completion: {
                     
                 })
             })
@@ -67,10 +62,10 @@ class MainViewController: MainBasicViewController{
         if LoginHTMLString != nil {
             //mainWebView.loadHTMLString(NetworkErrorMsg, BaseURL: NSURL(string: BaseURL))
             
-            let url = NSURL(string: BaseURL)!
-            let request = NSMutableURLRequest(URL: url)
+            let url = URL(string: BaseURL)!
+            let request = NSMutableURLRequest(url: url)
             request.addValue(cookieString, forHTTPHeaderField: "Cookie")
-            mainWebView.loadRequest(request)
+            mainWebView.load(request as URLRequest)
             //mainWebView.loadHTMLString(LoginHTMLString, baseURL: url)
             
         } else{
@@ -85,18 +80,4 @@ class MainViewController: MainBasicViewController{
 
 }
 
-extension MainViewController: ImagePickerDelegate{
-    func wrapperDidPress(imagePicker: ImagePickerController, images: [UIImage]){
-        print("Wrapper")
-        //imagePicker.galleryView.collectionView(images)
-    }
-    
-    func doneButtonDidPress(imagePicker: ImagePickerController, images: [UIImage]){
-        print("done")
-    }
-    
-    func cancelButtonDidPress(imagePicker: ImagePickerController){
-        print("cancel")
-    }
-}
 

@@ -1,30 +1,31 @@
 PODS:
-  - Alamofire (3.4.1)
-  - Bolts (1.7.0):
-    - Bolts/AppLinks (= 1.7.0)
-    - Bolts/Tasks (= 1.7.0)
-  - Bolts/AppLinks (1.7.0):
+  - Alamofire (4.0.0)
+  - Bolts (1.8.4):
+    - Bolts/AppLinks (= 1.8.4)
+    - Bolts/Tasks (= 1.8.4)
+  - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
-  - Bolts/Tasks (1.7.0)
+  - Bolts/Tasks (1.8.4)
   - CHRTextFieldFormatter (1.0.1)
-  - Crashlytics (3.7.1):
+  - Crashlytics (3.7.3):
     - Fabric (~> 1.6.3)
-  - Digits (2.2.0):
-    - TwitterCore (= 2.2.0)
-  - Fabric (1.6.7)
-  - FBSDKCoreKit (4.12.0):
+  - Digits (2.3.0):
+    - TwitterCore (= 2.3.0)
+  - Fabric (1.6.8)
+  - FBSDKCoreKit (4.14.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.12.0):
+  - FBSDKLoginKit (4.14.0):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.12.0):
+  - FBSDKShareKit (4.14.0):
     - FBSDKCoreKit
   - ImagePicker (1.4.0)
+  - JGProgressHUD (1.4)
   - Kanna (1.1.0)
-  - TwitterCore (2.2.0):
+  - TwitterCore (2.3.0):
     - Fabric
 
 DEPENDENCIES:
-  - Alamofire
+  - Alamofire (~> 4.0)
   - CHRTextFieldFormatter
   - Crashlytics
   - Digits
@@ -33,23 +34,25 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - FBSDKShareKit
   - ImagePicker
+  - JGProgressHUD
   - Kanna
   - TwitterCore
 
 SPEC CHECKSUMS:
-  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
-  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
+  Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   CHRTextFieldFormatter: 13b6449dbd421d97b6e179e50d817165f9feebec
-  Crashlytics: 3cdd4c9655be68032a0cf0379e0fb5ef6af22cad
-  Digits: 335c479574eb2bbc50be326c1daf505b68d87135
-  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  FBSDKCoreKit: 6e56d5a2a64a755ad4efb5dbeee8f82fb1b99775
-  FBSDKLoginKit: 03f68a8d48c2c8bb81d7eb8097973d483543e1f6
-  FBSDKShareKit: df1491f064cffc8ebcc3fc8b71be94cc190c728e
+  Crashlytics: 76f6beaff70acf226139582c09c78461597c2b98
+  Digits: af82d24ec38035cc555b60f55cca5abc68a76bed
+  Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
+  FBSDKCoreKit: 6e020b5db0b5bd1e01f5fb0902131befd129a502
+  FBSDKLoginKit: da563567a108050ef83739c8c8c001ee9e25fa13
+  FBSDKShareKit: e8e5d4ccef69b41132fe33acda26db1e33143e33
   ImagePicker: 6659ccdd4737bfa14ed3b4aa7ffe18b193d92a0c
+  JGProgressHUD: 1617b0940cf80bb53e8f7d6f0fd69252ea45d6d4
   Kanna: 355ed0193e5d8caf4fd996856b5bc98d586c11b6
-  TwitterCore: 115527630bb2986954adc928b8c895a92bcd57e5
+  TwitterCore: 817eae3e291fa4125b47789e26a4f6f024115c1f
 
-PODFILE CHECKSUM: f2c9375b0855abb33d226a54c6d02ea9da65dd51
+PODFILE CHECKSUM: 9be38f25291a64c461f4ba3f12d02999a4022e19
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.0.rc.2
